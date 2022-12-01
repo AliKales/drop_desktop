@@ -1,0 +1,242 @@
+﻿<Page x:Class="Drop.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Drop"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Home">
+
+    <Border Background="#272537"
+            CornerRadius="15"
+            AllowDrop="True"
+            Name="ImagePanel"
+            Drop="ImagePanel_Drop">
+
+        <Grid Margin="5,0,5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Height="15"
+                        Width="15"
+                        Click="BtnChangePage"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0">
+
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Ellipse Fill="Green"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <Button Grid.Column="1"
+                        Height="15"
+                        Width="15"
+                        Click="BtnMinimize">
+
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Ellipse Fill="#ffbd2e"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <Button Grid.Column="2"
+                        Height="15"
+                        Width="15"
+                        Click="BtnExit">
+
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Ellipse Fill="#ff5f56"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+
+            </Grid>
+
+            <TextBlock Text="SEND A TEXT"
+                       Grid.Row="1"
+                       Foreground="White"
+                       FontSize="22"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal">
+                <TextBox x:Name="txtText"
+                        AcceptsReturn="True"   
+                         TextWrapping="Wrap"
+                         
+                        FontSize="16"
+                        Width="800"
+                        FontWeight="Medium"
+                        Background="Transparent"
+                        Foreground="White"
+                        CaretBrush="LightGray"
+                        BorderBrush="DarkGray"
+                        BorderThickness="0,0,0,1"/>
+                
+                <Button x:Name="btnLogin"
+                        BorderThickness="0"
+                        Content="OK"
+                        Foreground="White"
+                        FontSize="12"
+                        Click="BtnSendText"
+                        Margin="10,0,0,0"
+                        Cursor="Hand">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Purple"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Purple"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="80" Height="40"
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+            </StackPanel>
+
+            <TextBlock Text="SEND A FILE"
+                       Grid.Row="3"
+                       Foreground="White"
+                       FontSize="22"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+            <StackPanel Grid.Row="4"
+                        x:Name="drag1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+            
+                <TextBlock Text="Drag a File Right Here"
+                           Foreground="GhostWhite"
+                           FontSize="30"
+                           VerticalAlignment="Center"
+                           Padding="0,0,5,0"
+                           FontWeight="Medium"/>
+
+                <Border CornerRadius="8,8,8,8"
+                        Height="100"
+                        Width="100">
+                    <Border.Background>
+                        <ImageBrush  ImageSource="\Resources\file.png"/>
+                    </Border.Background>
+                </Border>
+                
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="4"
+                        x:Name="drag2"
+                        Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Visibility="Hidden"
+                        HorizontalAlignment="Center">
+
+                <Button Grid.Column="2"
+                        Height="15"
+                        Width="15"
+                        HorizontalAlignment="Right"
+                        Click="BtnDelete">
+
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Ellipse Fill="#ff5f56"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <TextBlock x:Name="txtFile"
+                           Foreground="White"
+                           FontSize="17"
+                           FontWeight="Medium"
+                           Text="Deneme"/>
+                
+                <Button BorderThickness="0"
+                        Content="SEND"
+                        Foreground="White"
+                        FontSize="12"
+                        Cursor="Hand"
+                        Margin="0,30,0,0"
+                        Click="BtnSend">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Purple"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Purple"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="150" Height="40"
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+        
+    </Border>
+</Page>
